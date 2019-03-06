@@ -30,7 +30,7 @@ ui_print "  "
 ui_print "  Use the Volume keys to select "
 ui_print "    what you want to install    "
 ui_print " "
-ui_print "- Which font do you want ? -"
+ui_print "+ Which font do you want ? -"
 ui_print " "
 
 FONTS=(
@@ -57,48 +57,116 @@ mkdir -p $INSTALLER/system/fonts
 
 for i in "${FONTS[@]}"
 do
-  ui_print "  Install $i ?"
+  ui_print "- Install $i ?"
   ui_print "  Vol up = Yes, Vol Down = No"
   ui_print " "
 
   if $VKSEL; then
-    GAYATHRI=true
+    $SELECTION=$i
     break
-  else
-    GAYATHRI=false
   fi
 done
 
+ui_print " "
+ui_print "+ Installing $SELECTION..."
 
-if $GAYATHRI; then
-  ui_print " "
-  ui_print "+ Installing $SELECTION..."
-  FONT_BOLD=$INSTALLER/fonts/Gayathri-Bold.ttf
-  FONT_REGULAR=$INSTALLER/fonts/Gayathri-Regular.ttf
-  FONT_UI_BOLD=$INSTALLER/fonts/Gayathri-Bold.ttf
-  FONT_UI_REGULAR=$INSTALLER/fonts/Gayathri-Regular.ttf
+case "$SELECTION" in
+  "Anjali Old Lipi")
+    FONT_BOLD=AnjaliOldLipi-Regular
+    FONT_REGULAR=AnjaliOldLipi-Regular
+    FONT_UI_BOLD=AnjaliOldLipi-Regular
+    FONT_UI_REGULAR=AnjaliOldLipi-Regular
+  ;;
+  "Chilanka")
+    FONT_BOLD=Chilanka-Regular
+    FONT_REGULAR=Chilanka-Regular
+    FONT_UI_BOLD=Chilanka-Regular
+    FONT_UI_REGULAR=Chilanka-Regular
+  ;;
+  "Dyuthi")
+    FONT_BOLD=Dyuthi-Regular
+    FONT_REGULAR=Dyuthi-Regular
+    FONT_UI_BOLD=Dyuthi-Regular
+    FONT_UI_REGULAR=Dyuthi-Regular
+  ;;
+  "Gayathri")
+    FONT_BOLD=Gayathri-Bold
+    FONT_REGULAR=Gayathri-Regular
+    FONT_UI_BOLD=Gayathri-Bold
+    FONT_UI_REGULAR=Gayathri-Regular
+  "Gayathri + Manjari")
+    FONT_BOLD=Manjari-Bold
+    FONT_REGULAR=Manjari-Regular
+    FONT_UI_BOLD=Gayathri-Bold
+    FONT_UI_REGULAR=Gayathri-Regular
+  ;;
+  "Karumbi")
+    FONT_BOLD=Karumbi-Regular
+    FONT_REGULAR=Karumbi-Regular
+    FONT_UI_BOLD=Karumbi-Regular
+    FONT_UI_REGULAR=Karumbi-Regular
+  ;;
+  "Keraleeyam")
+    FONT_BOLD=Keraleeyam-Regular
+    FONT_REGULAR=Keraleeyam-Regular
+    FONT_UI_BOLD=Keraleeyam-Regular
+    FONT_UI_REGULAR=Keraleeyam-Regular
+  ;;
+  "Manjari")
+    FONT_BOLD=Manjari-Bold
+    FONT_REGULAR=Manjari-Regular
+    FONT_UI_BOLD=Manjari-Bold
+    FONT_UI_REGULAR=Manjari-Regular
+  ;;
+  "Meera")
+    FONT_BOLD=Meera-Regular
+    FONT_REGULAR=Meera-Regular
+    FONT_UI_BOLD=Meera-Regular
+    FONT_UI_REGULAR=Meera-Regular
+  ;;
+  "Rachana")
+    FONT_BOLD=Rachana-Regular
+    FONT_REGULAR=Rachana-Regular
+    FONT_UI_BOLD=Rachana-Regular
+    FONT_UI_REGULAR=Rachana-Regular
+  ;;
+  "Raghu Malayalam")
+    FONT_BOLD=aRaghuMalayalamSans-Regular
+    FONT_REGULAR=RaghuMalayalamSans-Regular
+    FONT_UI_BOLD=RaghuMalayalamSans-Regular
+    FONT_UI_REGULAR=RaghuMalayalamSans-Regular
+  ;;
+  "Suruma")
+    FONT_BOLD=Suruma-Regular
+    FONT_REGULAR=Suruma-Regular
+    FONT_UI_BOLD=Suruma-Regular
+    FONT_UI_REGULAR=Suruma-Regular
+  ;;
+  "Uroob")
+    FONT_BOLD=Uroob-Regular
+    FONT_REGULAR=Uroob-Regular
+    FONT_UI_BOLD=Uroob-Regular
+    FONT_UI_REGULAR=Uroob-Regular
+  ;;
+  *)
+    ui_print " "
+    ui_print " None Selected..."
+  ;;
+esac
+
+if [ ! -z $SELECTION ]; then
+  ui_print " Installing 1/4..."
+  cp -rf $INSTALLER/fonts/$FONT_BOLD.ttf $INSTALLER/system/fonts/NotoSansMalayalam-Bold.ttf
+  ui_print " Installing 2/4..."
+  cp -rf $INSTALLER/fonts/$FONT_REGULAR.ttf $INSTALLER/system/fonts/NotoSansMalayalam-Regular.ttf
+  ui_print " Installing 3/4..."
+  cp -rf $INSTALLER/fonts/$FONT_UI_BOLD.ttf $INSTALLER/system/fonts/NotoSansMalayalamUI-Bold.ttf
+  ui_print " Installing 4/4..."
+  cp -rf $INSTALLER/fonts/$FONT_UI_REGULAR.ttf $INSTALLER/system/fonts/NotoSansMalayalamUI-Regular.ttf
+  ui_print "  Done!"
+else
+  ui_print "  Nothing to Install!"
 fi
 
-if [ ! -z $FONT_BOLD ]; then
-  ui_print "+ Installing 1/4..."
-  cp -rf $FONT_BOLD $INSTALLER/system/fonts/NotoSansMalayalam-Bold.ttf
-fi
-
-if [ ! -z $FONT_REGULAR ]; then
-  ui_print "+ Installing 2/4..."
-  cp -rf $FONT_REGULAR $INSTALLER/system/fonts/NotoSansMalayalam-Regular.ttf
-fi
-
-if [ ! -z $FONT_UI_BOLD ]; then
-  ui_print "+ Installing 3/4..."
-  cp -rf $FONT_UI_BOLD $INSTALLER/system/fonts/NotoSansMalayalamUI-Bold.ttf
-fi
-
-if [ ! -z $FONT_UI_REGULAR ]; then
-  ui_print "+ Installing 4/4..."
-  cp -rf $FONT_UI_REGULAR $INSTALLER/system/fonts/NotoSansMalayalamUI-Regular.ttf
-fi
-
-ui_print "  Done!"
 
 ui_print " "

@@ -36,20 +36,7 @@ ui_print " "
 ui_print "+ Which font do you want ? -"
 ui_print " "
 
-FONTS=(
-  "Manjari"
-  "Gayathri + Manjari"
-  "Gayathri"
-  "Rachana"
-  "Meera"
-  "Anjali Old Lipi"
-  "Suruma"
-  "Raghu Malayalam"
-  "Dyuthi"
-  "Keraleeyam"
-  "Uroob"
-  "Chilanka"
-  "Karumbi" )
+FONTS="Manjari Gayathri+Manjari Gayathri Rachana Meera AnjaliOldLipi Suruma RaghuMalayalam Dyuthi Keraleeyam Uroob Chilanka Karumbi"
 
 SELECTION=""
 FONT_BOLD=""
@@ -58,8 +45,7 @@ FONT_UI_BOLD=""
 FONT_UI_REGULAR=""
 mkdir -p $TMPDIR/system/fonts
 
-for i in "${FONTS[@]}"
-do
+for i in $(echo $FONTS); do
   ui_print "- Install $i ?"
   ui_print "  Vol up = Yes, Vol Down = No"
   ui_print " "
@@ -74,7 +60,7 @@ ui_print " "
 ui_print "+ Installing $SELECTION..."
 
 case $SELECTION in
-  "Anjali Old Lipi")
+  "AnjaliOldLipi")
     FONT_BOLD="AnjaliOldLipi-Regular"
     FONT_REGULAR="AnjaliOldLipi-Regular"
     FONT_UI_BOLD="AnjaliOldLipi-Regular"
@@ -98,7 +84,7 @@ case $SELECTION in
     FONT_UI_BOLD="Gayathri-Bold"
     FONT_UI_REGULAR="Gayathri-Regular"
   ;;
-  "Gayathri + Manjari")
+  "Gayathri+Manjari")
     FONT_BOLD="Manjari-Bold"
     FONT_REGULAR="Manjari-Regular"
     FONT_UI_BOLD="Gayathri-Bold"
@@ -134,7 +120,7 @@ case $SELECTION in
     FONT_UI_BOLD="Rachana-Regular"
     FONT_UI_REGULAR="Rachana-Regular"
   ;;
-  "Raghu Malayalam")
+  "RaghuMalayalam")
     FONT_BOLD="aRaghuMalayalamSans-Regular"
     FONT_REGULAR="RaghuMalayalamSans-Regular"
     FONT_UI_BOLD="RaghuMalayalamSans-Regular"

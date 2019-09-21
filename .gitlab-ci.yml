@@ -1,0 +1,25 @@
+stages:
+  - build
+  - release
+
+build-zip:
+  image: 'alpine:latest'
+  stage: build
+  script:
+    - apk --no-cache add zip
+    - rm -rf .git release.rb
+    - zip -r magisk-malayalam-fonts-${CI_COMMIT_TAG}.zip .
+  artifacts:
+    paths:
+      - magisk-malayalam-fonts-${CI_COMMIT_TAG}.zip
+  only:
+    - tags
+
+release:
+  image: "ruby:2.5-alpine"
+  stage: release
+  script:
+    - gem install --no-document gitlab
+    - ruby release.rb
+  only:
+    - tags

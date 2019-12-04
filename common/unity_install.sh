@@ -145,10 +145,15 @@ case $SELECTION in
 esac
 
 if [ ! -z $SELECTION ]; then
-  cp -rf $TMPDIR/fonts/$FONT_BOLD.ttf $TMPDIR/system/fonts/NotoSansMalayalam-Bold.ttf
-  cp -rf $TMPDIR/fonts/$FONT_REGULAR.ttf $TMPDIR/system/fonts/NotoSansMalayalam-Regular.ttf
-  cp -rf $TMPDIR/fonts/$FONT_UI_BOLD.ttf $TMPDIR/system/fonts/NotoSansMalayalamUI-Bold.ttf
-  cp -rf $TMPDIR/fonts/$FONT_UI_REGULAR.ttf $TMPDIR/system/fonts/NotoSansMalayalamUI-Regular.ttf
+  TYPE="TTF"
+  if [ $(getprop ro.build.version.sdk) -gt 28 ]
+  then
+    TYPE="OTF"
+  fi
+  cp -rf $TMPDIR/fonts/$TYPE/$FONT_BOLD.$TYPE $TMPDIR/system/fonts/NotoSansMalayalam-Bold.$TYPE
+  cp -rf $TMPDIR/fonts/$TYPE/$FONT_REGULAR.$TYPE $TMPDIR/system/fonts/NotoSansMalayalam-Regular.$TYPE
+  cp -rf $TMPDIR/fonts/$TYPE/$FONT_UI_BOLD.$TYPE $TMPDIR/system/fonts/NotoSansMalayalamUI-Bold.$TYPE
+  cp -rf $TMPDIR/fonts/$TYPE/$FONT_UI_REGULAR.$TYPE $TMPDIR/system/fonts/NotoSansMalayalamUI-Regular.$TYPE
   ui_print "  Done!"
 else
   ui_print "  Nothing to Install!"

@@ -145,10 +145,10 @@ case $SELECTION in
 esac
 
 if [ ! -z $SELECTION ]; then
-  TYPE="TTF"
+  TYPE="ttf"
   if [ $(getprop ro.build.version.sdk) -gt 28 ]
   then
-    TYPE="OTF"
+    TYPE="otf"
   fi
   cp -rf $TMPDIR/fonts/$TYPE/$FONT_BOLD.$TYPE $TMPDIR/system/fonts/NotoSansMalayalam-Bold.$TYPE
   cp -rf $TMPDIR/fonts/$TYPE/$FONT_REGULAR.$TYPE $TMPDIR/system/fonts/NotoSansMalayalam-Regular.$TYPE

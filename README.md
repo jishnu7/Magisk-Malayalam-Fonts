@@ -16,3 +16,6 @@ Magiks Module to change default Malayalam font.
 - Uroob
 - Chilanka
 - Karumbi
+
+## Download
+Latest version can be downloaded from here - https://gitlab.com/smc/magisk-malayalam-fonts/-/releases
